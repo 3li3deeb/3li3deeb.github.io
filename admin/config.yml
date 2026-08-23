@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: 3li3deeb/IRAQdot
   branch: main
 
 media_folder: "images/uploads"
