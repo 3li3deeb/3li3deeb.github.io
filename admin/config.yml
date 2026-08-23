@@ -1,1 +1,21 @@
 
+backend:
+  name: github
+  repo: IRAQdot/resilient-monstera-b62f68 # اسم حسابك ومستودعك
+  branch: main # أو master حسب الفرع الرئيسي لديك
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "news"
+    label: "الأخبار"
+    folder: "content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "عنوان الخبر", name: "title", widget: "string"}
+      - {label: "القسم", name: "category", widget: "select", options: ["سياسة", "اقتصاد", "تكنولوجيا", "عامة"]}
+      - {label: "صورة الخبر", name: "image", widget: "image"}
+      - {label: "تاريخ النشر", name: "date", widget: "datetime"}
+      - {label: "تفاصيل الخبر", name: "body", widget: "markdown"}
