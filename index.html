@@ -4,138 +4,254 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة الأخبار العامة</title>
+    <!-- ربط خط Tajawal المخصص للمواقع الإخبارية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --main-color: #0d6efd;
-            --dark-color: #212529;
-            --bg-color: #f8f9fa;
+            --primary-color: #0046be;
+            --dark-color: #111827;
+            --light-bg: #f3f4f6;
             --card-bg: #ffffff;
-            --urgent-color: #dc3545;
+            --urgent-color: #e11d48;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.2s ease-in-out;
         }
 
         body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light-bg);
             margin: 0;
             padding: 0;
-            color: var(--dark-color);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
         /* الهيدر وشريط الملاحة */
         header {
             background-color: var(--dark-color);
             color: white;
-            padding: 15px 20px;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        header h1 {
+        .brand h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: white;
+        }
+
+        .brand h1 span {
+            color: var(--primary-color);
         }
 
         nav a {
-            color: white;
+            color: #d1d5db;
             text-decoration: none;
-            margin-right: 15px;
-            font-size: 15px;
+            margin-right: 20px;
+            font-weight: 500;
+            font-size: 16px;
         }
 
-        /* شريط العاجل */
-        .ticker {
+        nav a:hover {
+            color: white;
+        }
+
+        /* شريط العاجل المتحرك */
+        .ticker-wrapper {
             background-color: var(--urgent-color);
             color: white;
-            padding: 10px 20px;
-            font-weight: bold;
             display: flex;
             align-items: center;
+            padding: 0 5%;
+            font-weight: 700;
+            overflow: hidden;
         }
 
-        .ticker span {
-            background: white;
-            color: var(--urgent-color);
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-left: 10px;
+        .ticker-title {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 15px;
+            white-space: nowrap;
             font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ticker-text {
+            padding: 10px 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 500;
+            font-size: 15px;
         }
 
         /* الحاوية الرئيسية */
         .container {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 0 15px;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
+            grid-template-columns: 2.8fr 1.2fr;
+            gap: 30px;
         }
 
         /* شبكة الأخبار */
         .main-news {
             display: grid;
-            gap: 20px;
+            gap: 25px;
         }
 
         .news-card {
             background: var(--card-bg);
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         .news-card img {
             width: 100%;
-            height: 200px;
+            height: 280px;
             object-fit: cover;
         }
 
         .news-content {
-            padding: 15px;
+            padding: 20px;
         }
 
-        .news-content h3 {
-            margin: 0 0 10px 0;
-            font-size: 18px;
+        .category-tag {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .news-content h2 {
+            margin: 0 0 12px 0;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark-color);
+            line-height: 1.4;
         }
 
         .news-content p {
-            margin: 0;
-            color: #6c757d;
-            font-size: 14px;
-            line-height: 1.6;
+            margin: 0 0 15px 0;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f3f4f6;
+            padding-top: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
         /* الشريط الجانبي */
         .sidebar {
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
 
-        .sidebar h2 {
+        .widget {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .widget-title {
             font-size: 18px;
-            border-bottom: 2px solid var(--main-color);
-            padding-bottom: 5px;
+            font-weight: 800;
             margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
         .sidebar-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
         }
 
         .sidebar-item:last-child {
             border-bottom: none;
         }
 
-        /* التجاوب مع الهواتف */
-        @media (max-width: 768px) {
+        .sidebar-item a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            font-size: 15px;
+            display: block;
+        }
+
+        .sidebar-item a:hover {
+            color: var(--primary-color);
+        }
+
+        /* التجاوب مع الهواتف الذكية */
+        @media (max-width: 868px) {
             .container {
                 grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                display: flex;
+                gap: 10px;
+            }
+
+            nav a {
+                margin: 0;
+            }
+
+            .news-card img {
+                height: 200px;
             }
         }
     </style>
@@ -143,51 +259,67 @@
 <body>
 
     <header>
-        <h1>الأخبار اليومية</h1>
+        <div class="brand">
+            <h1>الأخبار<span>.</span></h1>
+        </div>
         <nav>
             <a href="#">الرئيسية</a>
             <a href="#">سياسة</a>
             <a href="#">اقتصاد</a>
-            <a href="#">ثقافة</a>
+            <a href="#">تكنولوجيا</a>
         </nav>
     </header>
 
-    <div class="ticker">
-        <span>عاجل</span>
-        <div>هنا يظهر نص الخبر العاجل الحالي...</div>
+    <div class="ticker-wrapper">
+        <div class="ticker-title">🔴 عاجل</div>
+        <div class="ticker-text">تحديثات مباشرة: التقرير النهائي للتطورات الاقتصادية يصدر اليوم</div>
     </div>
 
     <div class="container">
         <!-- قسم الأخبار الرئيسية -->
         <main class="main-news">
             <article class="news-card">
-                <img src="https://via.placeholder.com/600x300" alt="صورة الخبر">
+                <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80" alt="صورة الخبر">
                 <div class="news-content">
-                    <h3>عنوان الخبر الرئيسي الأول يوضع هنا</h3>
-                    <p>تفاصيل واستعراض مختصر للخبر العاجل أو التقرير الإخباري الشامل لشرح الأبعاد والتطورات الأخيرة...</p>
+                    <span class="category-tag">تكنولوجيا</span>
+                    <h2>قمة الذكاء الاصطناعي تبدأ أعمالها بمشاركة دولية واسعة</h2>
+                    <p>انطلقت صباح اليوم فعاليات المؤتمر الدولي لمستقبل التكنولوجيا والذكاء الاصطناعي وسط مشاركة أبرز الشركات والخبراء لاستعراض أحدث الحلول الرقمية.</p>
+                    <div class="news-meta">
+                        <span>منذ ساعتين</span>
+                        <span>قراءة: 3 دقائق</span>
+                    </div>
                 </div>
             </article>
 
             <article class="news-card">
-                <img src="https://via.placeholder.com/600x300" alt="صورة الخبر">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="صورة الخبر">
                 <div class="news-content">
-                    <h3>عنوان خبر ثانوي متعلق بالتطورات المحلية أو الدولية</h3>
-                    <p>موجز قصير يشرح محتوى التقرير الإخباري بشكل سريع يسهل قراءته على الهاتف والمكتب...</p>
+                    <span class="category-tag">اقتصاد</span>
+                    <h2>أسواق الأسهم تسجل مستويات قياسية مع إغلاق التعاملات الأسبوعية</h2>
+                    <p>شهدت المؤشرات المالية ارتفاعاً ملحوظاً مدفوعة بزيادة الاستثمارات في القطاعات الخدمية والتكنولوجية.</p>
+                    <div class="news-meta">
+                        <span>منذ 5 ساعات</span>
+                        <span>قراءة: 2 دقيقة</span>
+                    </div>
                 </div>
             </article>
         </main>
 
-        <!-- الشريط الجانبي (الأكثر قراءة / آخر الأخبار) -->
+        <!-- الشريط الجانبي -->
         <aside class="sidebar">
-            <h2>الأكثر قراءة</h2>
-            <div class="sidebar-item">
-                <a href="#" style="text-decoration:none; color:inherit; font-weight:bold;">1. عنوان خبر حائز على أعلى نسبة مشاهدات</a>
-            </div>
-            <div class="sidebar-item">
-                <a href="#" style="text-decoration:none; color:inherit;">2. تغطية خاصة حول التطورات الأخيرة</a>
-            </div>
-            <div class="sidebar-item">
-                <a href="#" style="text-decoration:none; color:inherit;">3. تقرير اقتصادي حول أسواق المال اليوم</a>
+            <div class="widget">
+                <h3 class="widget-title">الأكثر قراءة</h3>
+                <ul class="sidebar-list">
+                    <li class="sidebar-item">
+                        <a href="#">1. خطط جديدة لتطوير البنية التحتية للمدن الذكية</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#">2. تقرير شامل حول اتجاهات الوظائف المستقبليّة</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#">3. كيف تؤثر الطاقة النظيفة على سلاسل الإمداد؟</a>
+                    </li>
+                </ul>
             </div>
         </aside>
     </div>
