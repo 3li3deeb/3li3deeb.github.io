@@ -2,6 +2,8 @@ backend:
   name: github
   repo: 3li3deeb/IRAQdot
   branch: main
+  base_url: https://decap-cms-oauth-provider.vercel.app
+  auth_endpoint: auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
