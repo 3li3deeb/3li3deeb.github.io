@@ -1,6 +1,7 @@
 backend:
-  name: git-gateway
-  branch: main # أو master إذا كان هذا اسم الفرع الأساسي لديك
+  name: github
+  repo: 3li3deeb/IRAQdot
+  branch: main
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
