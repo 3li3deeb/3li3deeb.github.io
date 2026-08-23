@@ -1,8 +1,6 @@
-
 backend:
-  name: github
-  repo: IRAQdot/resilient-monstera-b62f68 # اسم حسابك ومستودعك
-  branch: main # أو master حسب الفرع الرئيسي لديك
+  name: git-gateway
+  branch: main # أو master إذا كان هذا اسم الفرع الأساسي لديك
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
