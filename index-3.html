@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عراق دوت | IRAQdot — منصة إخبارية مستقلة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root{
+    --ink:#111214; --paper:#f7f6f2; --card:#ffffff; --border:#e6e3da;
+    --text-dim:#6a6a63; --gold:#b8863b; --breaking:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Tajawal',sans-serif;}
+  h1,h2,h3,.brand{font-family:'IBM Plex Sans Arabic',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  header.site-header{background:var(--ink);color:#fff;padding:18px 24px;}
+  .header-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .brand{font-size:24px;font-weight:700;color:var(--gold);}
+  .brand-sub{color:#9a9a94;font-size:12px;margin-top:2px;}
+  .admin-link{font-size:12px;color:#9a9a94;border:1px solid #333;padding:6px 12px;border-radius:20px;}
+  .admin-link:hover{color:#fff;border-color:#666;}
+
+  .ticker-wrap{background:var(--breaking);color:#fff;overflow:hidden;white-space:nowrap;padding:9px 0;display:none;}
+  .ticker-wrap.active{display:block;}
+  .ticker-inner{display:inline-block;padding-right:100%;animation:ticker 28s linear infinite;font-size:13px;font-weight:600;}
+  .ticker-inner span{margin-left:60px;}
+  @keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+
+  main{max-width:1080px;margin:0 auto;padding:32px 24px 60px;}
+
+  .section-title{font-size:19px;font-weight:700;margin:0 0 16px;padding-right:12px;border-right:3px solid var(--gold);}
+
+  .featured-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-bottom:40px;}
+  .featured-main{position:relative;border-radius:12px;overflow:hidden;background:var(--card);border:1px solid var(--border);min-height:320px;}
+  .featured-main .thumb{width:100%;aspect-ratio:16/10;background:var(--border) center/cover no-repeat;}
+  .featured-main .info{padding:18px;}
+  .featured-side{display:flex;flex-direction:column;gap:14px;}
+  .side-card{display:flex;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px;}
+  .side-card .thumb{width:96px;height:72px;flex-shrink:0;border-radius:6px;background:var(--border) center/cover no-repeat;}
+  .side-card h3{font-size:14px;margin:0 0 4px;line-height:1.4;}
+
+  .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+  .filter-tab{padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--card);font-size:13px;cursor:pointer;}
+  .filter-tab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;}
+  .news-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .news-card .thumb{width:100%;aspect-ratio:16/9;background:var(--border) center/cover no-repeat;}
+  .news-card .info{padding:14px;}
+  .news-card h3{font-size:15px;margin:0 0 6px;line-height:1.5;}
+  .news-card p{font-size:13px;color:var(--text-dim);margin:0 0 10px;line-height:1.6;}
+  .card-meta{font-size:11px;color:var(--text-dim);display:flex;justify-content:space-between;}
+  .cat-pill{display:inline-block;font-size:11px;background:rgba(184,134,59,.12);color:var(--gold);padding:2px 10px;border-radius:20px;margin-bottom:8px;font-weight:600;}
+  .breaking-pill{background:rgba(192,57,43,.12);color:var(--breaking);}
+
+  .empty{text-align:center;padding:60px 20px;color:var(--text-dim);}
+
+  footer{background:var(--ink);color:#8a8a84;text-align:center;padding:24px;font-size:13px;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <div class="brand">عراق دوت | IRAQdot</div>
+      <div class="brand-sub">منصة إخبارية مستقلة — للحقيقة عدة طرق، وكلها عندنا</div>
+    </div>
+    <a class="admin-link" href="admin.html">لوحة التحكم</a>
+  </div>
+</header>
+
+<div class="ticker-wrap" id="ticker-wrap">
+  <div class="ticker-inner" id="ticker-inner"></div>
+</div>
+
+<main>
+  <section id="featured-section" style="display:none;">
+    <h2 class="section-title">أبرز الأخبار</h2>
+    <div class="featured-grid" id="featured-grid"></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">أحدث الأخبار</h2>
+    <div class="filter-tabs" id="filter-tabs"></div>
+    <div class="news-grid" id="news-grid"></div>
+    <div class="empty" id="empty-msg" style="display:none;">لا توجد أخبار منشورة بهذا القسم حالياً.</div>
+  </section>
+</main>
+
+<footer>© <span id="year"></span> عراق دوت — جميع الحقوق محفوظة</footer>
+
+<script>
+const SUPABASE_URL = "https://curjpcwsfembsvlcdmyd.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_tCD65z3J7z_g_vzp8B-pSA_rROB0OXg";
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+let allNews = [];
+let activeCategory = "";
+
+function timeAgo(dateStr) {
+  return new Date(dateStr).toLocaleDateString("ar-IQ", { year: "numeric", month: "long", day: "numeric" });
+}
+
+function cardHTML(n) {
+  return `
+    <a class="news-card" href="article.html?id=${n.id}">
+      <div class="thumb" style="${n.image_url ? `background-image:url('${n.image_url}')` : ""}"></div>
+      <div class="info">
+        <span class="cat-pill ${n.is_breaking ? "breaking-pill" : ""}">${n.is_breaking ? "عاجل" : n.category}</span>
+        <h3>${n.title}</h3>
+        ${n.excerpt ? `<p>${n.excerpt}</p>` : ""}
+        <div class="card-meta"><span>${n.author || ""}</span><span>${timeAgo(n.published_at)}</span></div>
+      </div>
+    </a>`;
+}
+
+function renderFeatured() {
+  const featured = allNews.filter((n) => n.is_featured).slice(0, 3);
+  const section = document.getElementById("featured-section");
+  if (!featured.length) { section.style.display = "none"; return; }
+  section.style.display = "block";
+  const [main, ...side] = featured;
+  const grid = document.getElementById("featured-grid");
+  grid.innerHTML = `
+    <a class="featured-main" href="article.html?id=${main.id}">
+      <div class="thumb" style="${main.image_url ? `background-image:url('${main.image_url}')` : ""}"></div>
+      <div class="info">
+        <span class="cat-pill">${main.category}</span>
+        <h2 style="margin:6px 0;font-size:20px;">${main.title}</h2>
+        <p style="color:var(--text-dim);font-size:14px;">${main.excerpt || ""}</p>
+      </div>
+    </a>
+    <div class="featured-side">
+      ${side.map((n) => `
+        <a class="side-card" href="article.html?id=${n.id}">
+          <div class="thumb" style="${n.image_url ? `background-image:url('${n.image_url}')` : ""}"></div>
+          <div><h3>${n.title}</h3><div class="card-meta">${timeAgo(n.published_at)}</div></div>
+        </a>`).join("")}
+    </div>`;
+}
+
+function renderTabs() {
+  const cats = [...new Set(allNews.map((n) => n.category))];
+  const wrap = document.getElementById("filter-tabs");
+  wrap.innerHTML = `<div class="filter-tab ${activeCategory === "" ? "active" : ""}" data-cat="">الكل</div>` +
+    cats.map((c) => `<div class="filter-tab ${activeCategory === c ? "active" : ""}" data-cat="${c}">${c}</div>`).join("");
+  wrap.querySelectorAll(".filter-tab").forEach((el) => {
+    el.addEventListener("click", () => { activeCategory = el.dataset.cat; renderTabs(); renderGrid(); });
+  });
+}
+
+function renderGrid() {
+  const list = activeCategory ? allNews.filter((n) => n.category === activeCategory) : allNews;
+  const grid = document.getElementById("news-grid");
+  grid.innerHTML = list.map(cardHTML).join("");
+  document.getElementById("empty-msg").style.display = list.length ? "none" : "block";
+}
+
+function renderTicker() {
+  const breaking = allNews.filter((n) => n.is_breaking);
+  const wrap = document.getElementById("ticker-wrap");
+  if (!breaking.length) { wrap.classList.remove("active"); return; }
+  wrap.classList.add("active");
+  document.getElementById("ticker-inner").innerHTML =
+    breaking.map((n) => `<span>عاجل: ${n.title}</span>`).join("");
+}
+
+async function loadNews() {
+  const { data, error } = await sb.from("news").select("*").order("published_at", { ascending: false });
+  if (error) { console.error(error); return; }
+  allNews = data || [];
+  renderTicker();
+  renderFeatured();
+  renderTabs();
+  renderGrid();
+}
+
+loadNews();
+</script>
+</body>
+</html>
