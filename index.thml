@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعي الشخصي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1 class="logo">موقعي</h1>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">من أنا</a></li>
+                <li><a href="#contact">تواصل معي</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h2>مرحباً بك في موقعي 👋</h2>
+        <p>هذا موقع شخصي مجاني مستضاف على GitHub Pages</p>
+        <button onclick="showMessage()">اضغط هنا</button>
+    </section>
+
+    <section id="about">
+        <h2>من أنا</h2>
+        <p>اكتب هنا نبذة عن نفسك أو عن مشروعك.</p>
+    </section>
+
+    <section id="contact">
+        <h2>تواصل معي</h2>
+        <p>البريد الإلكتروني: example@email.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
