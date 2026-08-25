@@ -3,61 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عراق دوت | IRAQdot</title>
+    <title>عراق دوت | أخبار عالمية ومحلية</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- الشريط العلوي -->
+    <div class="top-bar">
+        <span id="date-today"></span>
+        <span>الأحداث كما تحدث 📰</span>
+    </div>
+
+    <!-- الهيدر -->
     <header>
+        <div class="logo">🇮🇶 عراق<span>دوت</span></div>
         <nav>
-            <h1 class="logo">🇮🇶 عراق دوت</h1>
             <ul class="nav-links">
                 <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#services">خدماتنا</a></li>
-                <li><a href="#about">من نحن</a></li>
-                <li><a href="#contact">تواصل معنا</a></li>
+                <li><a href="#politics">سياسة</a></li>
+                <li><a href="#economy">اقتصاد</a></li>
+                <li><a href="#sports">رياضة</a></li>
+                <li><a href="#society">مجتمع</a></li>
+                <li><a href="#culture">أدب</a></li>
+                <li><a href="#science">علوم</a></li>
+                <li><a href="#tech">تكنولوجيا</a></li>
+                <li><a href="#religion">دين</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <h2>مرحباً بك في عراق دوت 👋</h2>
-        <p>منصة عراقية لخدمات الويب والاستضافة المجانية</p>
-        <button onclick="showMessage()">ابدأ الآن</button>
-    </section>
+    <!-- الخبر العاجل -->
+    <div class="breaking">
+        <span class="breaking-label">عاجل 🔴</span>
+        <p id="breaking-text">جاري تحميل آخر الأخبار العاجلة...</p>
+    </div>
 
-    <section id="services">
-        <h2>خدماتنا</h2>
-        <div class="cards">
-            <div class="card">
-                <h3>🌐 استضافة مواقع</h3>
-                <p>استضافة مجانية وسريعة لمواقعك عبر GitHub Pages</p>
-            </div>
-            <div class="card">
-                <h3>💻 تطوير ويب</h3>
-                <p>تصميم وتطوير مواقع احترافية بأحدث التقنيات</p>
-            </div>
-            <div class="card">
-                <h3>🔒 أمان وحماية</h3>
-                <p>حماية مواقعك مع شهادات SSL مجانية</p>
-            </div>
-        </div>
-    </section>
+    <!-- الخبر الرئيسي -->
+    <main>
+        <section id="home" class="main-news">
+            <article class="featured">
+                <div class="featured-img">📷</div>
+                <div class="featured-content">
+                    <span class="tag">رئيسي</span>
+                    <h2>العنوان الرئيسي للخبر الأبرز اليوم في العراق والعالم</h2>
+                    <p>ملخص الخبر الرئيسي يظهر هنا مع أهم التفاصيل والأحداث التي تهم القارئ العراقي والعربي...</p>
+                    <span class="meta">🕐 قبل ساعتين | قسم: السياسة</span>
+                </div>
+            </article>
 
-    <section id="about">
-        <h2>من نحن</h2>
-        <p>عراق دوت هي منصة عراقية تهدف لدعم المطورين وأصحاب المشاريع في العراق بتقديم خدمات ويب مجانية واحترافية.</p>
-    </section>
+            <aside class="side-news">
+                <h3>الأكثر قراءة 📈</h3>
+                <article class="mini-news">
+                    <h4>عنوان الخبر الأول الأكثر قراءة</h4>
+                    <span class="meta">قبل 30 دقيقة</span>
+                </article>
+                <article class="mini-news">
+                    <h4>عنوان الخبر الثاني الأكثر قراءة</h4>
+                    <span class="meta">قبل ساعة</span>
+                </article>
+                <article class="mini-news">
+                    <h4>عنوان الخبر الثالث الأكثر قراءة</h4>
+                    <span class="meta">قبل 3 ساعات</span>
+                </article>
+            </aside>
+        </section>
 
-    <section id="contact">
-        <h2>تواصل معنا</h2>
-        <p>📧 البريد الإلكتروني: contact@iraqdot.com</p>
-        <p>🐙 GitHub: <a href="https://github.com/3li3deeb/IRAQdot">3li3deeb/IRAQdot</a></p>
-    </section>
+        <!-- أقسام الأخبار -->
+        <section id="politics" class="news-section">
+            <h2 class="section-title">🏛️ السياسة</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="card-img">📰</div>
+                    <h4>عنوان خبر سياسي محلي</h4>
+                    <p>ملخص قصير للخبر السياسي...</p>
+                    <span class="meta">قبل ساعتين</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🌍</div>
+                    <h4>عنوان خبر سياسي عالمي</h4>
+                    <p>ملخص قصير للخبر العالمي...</p>
+                    <span class="meta">قبل 4 ساعات</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🤝</div>
+                    <h4>عنوان خبر عن العلاقات الدولية</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل 5 ساعات</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="economy" class="news-section">
+            <h2 class="section-title">💰 الاقتصاد</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="card-img">📈</div>
+                    <h4>أسعار النفط والدينار</h4>
+                    <p>ملخص الأخبار الاقتصادية...</p>
+                    <span class="meta">قبل ساعة</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🏪</div>
+                    <h4>أسواق بغداد والسلع</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل 3 ساعات</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">💼</div>
+                    <h4>فرص العمل والاستثمار</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل 6 ساعات</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="sports" class="news-section">
+            <h2 class="section-title">⚽ الرياضة</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="card-img">⚽</div>
+                    <h4>نتائج الدوري العراقي</h4>
+                    <p>ملخص المباريات والنتائج...</p>
+                    <span class="meta">قبل ساعة</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🏆</div>
+                    <h4>المنتخب العراقي</h4>
+                    <p>أخبار أسود الرافدين...</p>
+                    <span class="meta">قبل ساعتين</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🎾</div>
+                    <h4>أخبار الرياضة العالمية</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل 5 ساعات</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="society" class="news-section">
+            <h2 class="section-title">👥 المجتمع</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="card-img">🏫</div>
+                    <h4>أخبار التعليم والمدارس</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل ساعتين</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🏥</div>
+                    <h4>الصحة والخدمات</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل 4 ساعات</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🌤️</div>
+                    <h4>طقس العراق اليوم</h4>
+                    <p>نشرة الأحوال الجوية...</p>
+                    <span class="meta">اليوم</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="culture" class="news-section">
+            <h2 class="section-title">📚 الأدب</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="card-img">✍️</div>
+                    <h4>جديد الشعر والقصة</h4>
+                    <p>ملخص قصير للخبر الثقافي...</p>
+                    <span class="meta">أمس</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🎭</div>
+                    <h4>الفنون والمهرجانات</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">أمس</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">📖</div>
+                    <h4>كتاب وأدباء عراقيون</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل يومين</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="science" class="news-section">
+            <h2 class="section-title">🔬 العلوم</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="card-img">🚀</div>
+                    <h4>اكتشافات الفضاء</h4>
+                    <p>ملخص قصير للخبر العلمي...</p>
+                    <span class="meta">أمس</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🧬</div>
+                    <h4>الطب والأبحاث</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل يومين</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🌱</div>
+                    <h4>البيئة والمناخ</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل 3 أيام</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="tech" class="news-section">
+            <h2 class="section-title">💻 التكنولوجيا</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="card-img">🤖</div>
+                    <h4>الذكاء الاصطناعي</h4>
+                    <p>ملخص قصير للخبر التقني...</p>
+                    <span class="meta">أمس</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">📱</div>
+                    <h4>الهواتف والتطبيقات</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">أمس</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🎮</div>
+                    <h4>الألعاب الإلكترونية</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل يومين</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="religion" class="news-section">
+            <h2 class="section-title">🕌 الدين</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="card-img">🕌</div>
+                    <h4>أخبار الأوقاف والمساجد</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">أمس</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">📿</div>
+                    <h4>مواقيت الصلاة</h4>
+                    <p>مواقيت الصلاة في بغداد وجميع المحافظات...</p>
+                    <span class="meta">اليوم</span>
+                </article>
+                <article class="news-card">
+                    <div class="card-img">🕋</div>
+                    <h4>أخبار الحج والعمرة</h4>
+                    <p>ملخص قصير للخبر...</p>
+                    <span class="meta">قبل يومين</span>
+                </article>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2025 عراق دوت - جميع الحقوق محفوظة 🇮🇶</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+        <div
